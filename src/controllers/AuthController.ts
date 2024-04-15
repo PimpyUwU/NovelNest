@@ -23,7 +23,7 @@ export const AuthController = {
             return
         }
 
-        const token : string = await createJwt(user.userId, user.university_id)
+        const token : string = await createJwt(user.userId, user.university_id, user.is_verified)
 
         //successfully logged-in user
         res.cookie('jwt', token, {
@@ -47,7 +47,7 @@ export const AuthController = {
             return
         }
 
-        const token : string = await createJwt(user.userId, user.university_id)
+        const token : string = await createJwt(user.userId, user.university_id, user.is_verified)
         //successfully logged-in user
         res.cookie('jwt', token, {
             httpOnly : true,
@@ -57,7 +57,7 @@ export const AuthController = {
     }
 }
 
-const createJwt = async (userId : number, universityId : number) : Promise<string> => {
+const createJwt = async (userId : number, universityId : number, is_verified : boolean) : Promise<string> => {
     return jwt.sign({userId : userId, universityId : universityId}, SECRET_KEY, {
         expiresIn : 3 * 24 * 60 * 60
     })

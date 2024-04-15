@@ -3,4 +3,5 @@ export type UserViewModel = {
     name : string
     isic : string
     university_id : number
+    is_verified : boolean
 }

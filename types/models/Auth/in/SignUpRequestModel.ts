@@ -1,4 +1,7 @@
 export type SignUpRequestModel = {
-    img : File
+    isic : string
+    university : number
+    firstName : string
+    lastName : string
     password : string
 }

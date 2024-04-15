@@ -11,4 +11,6 @@ export const GetAuthRouter = () => {
     router.get('/sign-up', AuthController.signInGet)
 
     router.post('/sign-up', AuthController.signInPost)
+
+    return router
 }
