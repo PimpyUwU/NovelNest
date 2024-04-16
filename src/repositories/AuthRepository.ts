@@ -3,6 +3,7 @@ import {LogInRequestModel} from "../../types/models/Auth/in/LogInRequestModel";
 import {UserORMModelOut} from "../../types/models/Auth/out/UserORMModelOut";
 import bcrypt from "bcrypt"
 import {SignUpRequestModel} from "../../types/models/Auth/in/SignUpRequestModel";
+import {UniversityViewModel} from "../../types/models/Auth/out/UniversityViewModel";
 
 const prisma: PrismaClient = new PrismaClient()
 
@@ -60,5 +61,16 @@ export const AuthRepository = {
                 }
             }
         })
+    },
+
+    async getAllUni() : Promise<UniversityViewModel[]>{
+        return prisma.university.findMany(
+            {
+                select : {
+                    id : true,
+                    name : true
+                }
+            }
+        )
     }
 }
