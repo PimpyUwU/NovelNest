@@ -12,7 +12,7 @@ export const GetAuthRouter = () => {
 
     router.post('/sign-up', AuthController.signInPost)
 
-    router.post('log-out', AuthController.logOut)
+    router.post('/log-out', AuthController.logOut)
 
     return router
 }
