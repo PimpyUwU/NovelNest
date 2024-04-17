@@ -1,10 +1,10 @@
 import {Request, Response} from "express";
-import {RequestWithBody} from "../../types/RequestTypes";
+import {RequestWithBody, RequestWithJWT} from "../../types/RequestTypes";
 import {LogInRequestModel} from "../../types/models/Auth/in/LogInRequestModel";
 import {UserViewModel} from "../../types/models/Auth/out/UserViewModel";
 import {AuthService} from "../services/AuthService";
 import HTTP_CODES from "../HTTP_CODES";
-import jwt from "jsonwebtoken"
+import jwt, {JwtPayload} from "jsonwebtoken"
 import {SECRET_KEY} from "../../env";
 import {SignUpRequestModel} from "../../types/models/Auth/in/SignUpRequestModel";
 import {UniversityViewModel} from "../../types/models/Auth/out/UniversityViewModel";
@@ -58,6 +58,13 @@ export const AuthController = {
             maxAge : 3 * 24 * 60 * 60 * 1000
         })
         res.status(HTTP_CODES.OK_200).json(user).send()
+    },
+
+    async logOut(req : RequestWithJWT, res : Response){
+        res.cookie('jwt', '', {
+            maxAge : 1,
+            httpOnly : true
+        }).redirect('/')
     }
 }
 
