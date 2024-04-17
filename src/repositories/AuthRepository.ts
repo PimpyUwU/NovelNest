@@ -26,7 +26,7 @@ export const AuthRepository = {
         if (!user) {
             return null
         }
-        if (!await bcrypt.compare(userData.password, userData.password)) {
+        if (!await bcrypt.compare(userData.password, user.password)) {
             return null
         }
 
@@ -35,18 +35,29 @@ export const AuthRepository = {
 
     async signIn(userData: SignUpRequestModel): Promise<UserORMModelOut | null> {
         const salt = await bcrypt.genSalt()
+
+        if(!userData.password || !userData.isic){
+            return null
+        }
+
         userData.password = await bcrypt.hash(userData.password, salt)
 
-        prisma.student.create({
-            data: {
-                first_name : userData.firstName,
-                last_name : userData.lastName,
-                password : userData.password,
-                isic : userData.isic,
-                university_id : userData.university_id,
-                is_verified : false
-            },
-        })
+        try{
+            await prisma.student.create({
+                data : {
+                    first_name : userData.first_name,
+                    last_name : userData.last_name,
+                    password : userData.password,
+                    isic : userData.isic,
+                    university_id : userData.university_id,
+                    is_verified : false
+                }
+
+            })
+        }
+        catch (err){
+            return null
+        }
 
         return prisma.student.findFirst({
             where: {
@@ -57,6 +68,7 @@ export const AuthRepository = {
                     select: {
                         id : true,
                         name: true
+                        
                     }
                 }
             }

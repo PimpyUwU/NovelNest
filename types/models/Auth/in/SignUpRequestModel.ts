@@ -1,7 +1,7 @@
 export type SignUpRequestModel = {
     isic : string
     university_id : number
-    firstName : string
-    lastName : string
+    first_name : string
+    last_name : string
     password : string
 }

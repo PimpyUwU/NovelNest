@@ -5,6 +5,7 @@ export type UserORMModelOut = {
     isic : string,
     university_id : number
     is_verified : boolean
+    password : string
     university : {
         id : number
         name : string
