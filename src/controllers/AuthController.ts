@@ -68,8 +68,8 @@ export const AuthController = {
     }
 }
 
-const createJwt = async (userId : number, universityId : number, is_verified : boolean) : Promise<string> => {
-    return jwt.sign({userId : userId, universityId : universityId, isVerified : is_verified}, SECRET_KEY, {
+const createJwt = async (userId : number, universityId : number, isVerified : boolean) : Promise<string> => {
+    return jwt.sign({userId : userId, universityId : universityId, isVerified : isVerified}, SECRET_KEY, {
         expiresIn : 3 * 24 * 60 * 60
     })
 }
