@@ -8,3 +8,4 @@ export interface RequestWithJWT extends Request {
 export type RequestWithURIParam<T> = Request<T>
 export type RequestWithBody<T> = Request<{}, {}, T>
 export type RequestWithURIParamsAndBody<T, U> = Request<T, {}, U>
+export type RequestWithQueryParam<T> = Request<{}, {}, {}, T>
