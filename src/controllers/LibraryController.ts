@@ -3,16 +3,12 @@ import {RequestWithQueryParam, RequestWithURIParam} from "../../types/RequestTyp
 import {BookFilters} from "../../types/models/Library/in/BookFilters";
 
 export const LibraryController = {
-    async getBooks(req : RequestWithQueryParam<BookFilters>, res : Response){
+    async getBooks(req : Request, res : Response){
         const userData = {
             userID: +res.locals.userId,
             universityId : +res.locals.universityId,
             isVerified : res.locals.isVerified
         }
-        
-
-
-
 
 
     }

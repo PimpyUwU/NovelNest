@@ -1,12 +1,9 @@
-import {NextFunction, Response} from "express";
+import {NextFunction, Request, Response} from "express";
 import {SECRET_KEY} from "../../env";
 import * as jwt from "jsonwebtoken"
-import {RequestWithJWT} from "../../types/RequestTypes";
-
-
 
 export const AuthMiddleware = {
-    async requireAuthorization(req : RequestWithJWT, res : Response, next : NextFunction){
+    async requireAuthorization(req : Request, res : Response, next : NextFunction){
         const token : string | null  = req.cookies.jwt
 
         if(token){
@@ -21,7 +18,7 @@ export const AuthMiddleware = {
         else res.redirect("/admin/log-in")
     },
 
-    async checkUserRoleAndId(req : RequestWithJWT, res : Response, next : NextFunction){
+    async checkUserRoleAndId(req : Request, res : Response, next : NextFunction){
         const token : string | null = req.cookies.jwt
 
         if(token){
