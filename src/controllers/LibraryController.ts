@@ -4,12 +4,13 @@ import {BookFilters} from "../../types/models/Library/in/BookFilters";
 import {BookPlateViewModel} from "../../types/models/Library/out/BookPlateViewModel";
 import {LibraryService} from "../services/LibraryService";
 import HTTP_CODES from "../HTTP_CODES";
+import {UserJWTData} from "../../types/models/Auth/in/UserJWTData";
 
 export const LibraryController = {
     async getBooks(req : RequestWithQueryParam<BookFilters>,
-                   res : Response<BookPlateViewModel>){
+                   res : Response<BookPlateViewModel[]>){
 
-        const userData = {
+        const userData : UserJWTData = {
             userID: +res.locals.userId,
             universityId : +res.locals.universityId,
             isVerified : res.locals.isVerified
@@ -17,7 +18,7 @@ export const LibraryController = {
 
         const filters = req.query
 
-        const books : BookPlateViewModel = await LibraryService.GetAllBooks(userData, filters)
+        const books : BookPlateViewModel[] | null = await LibraryService.GetAllBooks(userData, filters)
 
         if(!books){
             res.status(HTTP_CODES.NO_CONTENT_204).send()

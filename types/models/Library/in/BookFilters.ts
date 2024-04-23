@@ -1,5 +1,5 @@
 export type BookFilters = {
-    category : number,
+    genre : string,
     year : number,
     name : string,
     author : string
