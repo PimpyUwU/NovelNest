@@ -19,6 +19,17 @@ export const LibraryRepository = {
                     select: {
                         genre: true
                     }
+                },
+                Feedback : {
+                    select : {
+                        student : {
+                            select : {
+                                first_name : true,
+                            }
+                        },
+                        title : true,
+                        text : true
+                    }
                 }
             },
             where: {
@@ -38,7 +49,37 @@ export const LibraryRepository = {
         })
     },
 
-    async GetBookById(){
+    async GetBookById(userData : UserJWTData, bookId : number) : Promise<BookOrmModelOut | null>{
+        return prisma.book.findFirst({
+            select : {
+                id: true,
+                title: true,
+                description:
+                    true,
+                photo_path: true,
+                file_path: true,
+                genre: {
+                    select: {
+                        genre: true
+                    }
+                },
+                Feedback : {
+                    select : {
+                        student : {
+                            select : {
+                                first_name : true,
+                            }
+                        },
+                        title : true,
+                        text : true
+                    }
+                }
+            },
+            where : {
+                id : bookId,
+                university_id : userData.universityId
+            }
+        })
 
     }
 }

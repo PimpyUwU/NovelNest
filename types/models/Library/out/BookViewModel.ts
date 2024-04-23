@@ -5,6 +5,6 @@ export type BookViewModel = {
     description : string
     photo : string
     file : string
-    university : string
-    feedback : FeedBackViewModel[]
+    genre : string
+    Feedback : FeedBackViewModel[]
 }

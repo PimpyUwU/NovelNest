@@ -7,6 +7,8 @@ export const GetLibraryRouter = () => {
 
     router.get('/', AuthMiddleware.checkUserRoleAndId, LibraryController.getBooks)
 
+    router.get('/:id', AuthMiddleware.checkUserRoleAndId, LibraryController.GetBookById)
+
 
     return router
 }

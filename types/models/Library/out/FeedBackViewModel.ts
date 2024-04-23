@@ -1,5 +1,7 @@
 export type FeedBackViewModel = {
-    userName : string,
+    student : {
+        first_name : string
+    }
     title : string,
     text : string
 }

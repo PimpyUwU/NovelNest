@@ -1,3 +1,5 @@
+import {FeedBackViewModel} from "./FeedBackViewModel";
+
 export type BookOrmModelOut = {
     id : number,
     title : string,
@@ -7,4 +9,5 @@ export type BookOrmModelOut = {
     genre : {
         genre : string
     }
+    Feedback : FeedBackViewModel[]
 }
