@@ -7,12 +7,38 @@ const prisma: PrismaClient = new PrismaClient()
 
 export const LibraryRepository = {
     async getAllBooks(userData : UserJWTData, filters : BookFilters) : Promise<BookOrmModelOut[] | null>{
-        prisma.book.findMany({
-            where : {
-                genre : filters.genre,
-            }
-        })
+        return prisma.book.findMany({
+            select: {
+                id: true,
+                title: true,
+                description:
+                    true,
+                photo_path: true,
+                file_path: true,
+                genre: {
+                    select: {
+                        genre: true
+                    }
+                }
+            },
+            where: {
+                genre: {
+                    genre: filters.genre
+                },
+                year: filters.year,
+                title: {
+                    contains: filters.name
 
+                },
+                author: {
+                    contains: filters.name
+                },
+                university_id: userData.universityId
+            },
+        })
+    },
+
+    async GetBookById(){
 
     }
 }

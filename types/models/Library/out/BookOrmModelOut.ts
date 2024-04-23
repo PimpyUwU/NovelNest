@@ -1,9 +1,10 @@
 export type BookOrmModelOut = {
-    id : string,
+    id : number,
     title : string,
     description : string,
     photo_path : string,
     file_path : string,
-    genre : string,
-
+    genre : {
+        genre : string
+    }
 }
