@@ -35,7 +35,7 @@ export const LibraryController = {
             universityId : +res.locals.universityId,
             isVerified : res.locals.isVerified
         }
-        const id = req.params.id
+        const id = +req.params.id
 
         const book : BookViewModel | null = await LibraryService.GetBookByID(userData, id)
 
@@ -45,7 +45,6 @@ export const LibraryController = {
         }
 
         res.status(HTTP_CODES.OK_200).send(book)
-
     }
 }
 

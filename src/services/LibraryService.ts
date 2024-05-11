@@ -1,10 +1,12 @@
 import fs from "fs";
+import path from 'path';
 import {BookPlateViewModel} from "../../types/models/Library/out/BookPlateViewModel";
 import {BookOrmModelOut} from "../../types/models/Library/out/BookOrmModelOut";
 import {LibraryRepository} from "../repositories/LibraryRepository";
 import {BookFilters} from "../../types/models/Library/in/BookFilters";
 import {UserJWTData} from "../../types/models/Auth/in/UserJWTData";
 import {BookViewModel} from "../../types/models/Library/out/BookViewModel";
+
 
 export const LibraryService = {
     async GetAllBooks(userData : UserJWTData, filters : BookFilters) : Promise<BookPlateViewModel[] | null>{
@@ -42,7 +44,7 @@ export const LibraryService = {
     }
 }
 
-function EncodeFileToBase64(path : string) : string{
-    const file : Buffer = fs.readFileSync(path)
+function EncodeFileToBase64(filePath : string) : string{
+    const file : Buffer = fs.readFileSync(path.resolve(__dirname, filePath))
     return file.toString('base64')
 }

@@ -34,6 +34,9 @@ export const LibraryRepository = {
             },
             where: {
                 genre: {
+                    type : {
+                        type : filters.type
+                    },
                     genre: filters.genre
                 },
                 year: filters.year,
@@ -44,7 +47,7 @@ export const LibraryRepository = {
                 author: {
                     contains: filters.name
                 },
-                university_id: userData.universityId
+                university_id: userData.universityId,
             },
         })
     },

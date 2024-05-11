@@ -1,5 +1,6 @@
 import express from "express";
 import {AuthController} from "../controllers/AuthController";
+import {AuthMiddleware} from "../middleware/AuthMiddleware";
 
 export const GetAuthRouter = () => {
     const router = express.Router()
@@ -12,7 +13,7 @@ export const GetAuthRouter = () => {
 
     router.post('/sign-up', AuthController.signInPost)
 
-    router.post('/log-out', AuthController.logOut)
+    router.post('/log-out', AuthMiddleware.requireAuthorization, AuthController.logOut)
 
     return router
 }

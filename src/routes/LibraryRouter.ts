@@ -9,6 +9,5 @@ export const GetLibraryRouter = () => {
 
     router.get('/:id', AuthMiddleware.checkUserRoleAndId, LibraryController.GetBookById)
 
-
     return router
 }
