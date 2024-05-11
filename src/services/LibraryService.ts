@@ -40,7 +40,6 @@ export const LibraryService = {
             genre : book.genre.genre,
             Feedback : book.Feedback
         }
-
     }
 }
 
