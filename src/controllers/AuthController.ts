@@ -29,7 +29,9 @@ export const AuthController = {
         //successfully logged-in user
         res.cookie('jwt', token, {
             httpOnly : true,
-            maxAge : 3 * 24 * 60 * 60 * 1000
+            maxAge : 3 * 24 * 60 * 60 * 1000,
+            sameSite: 'none',
+            secure: true
         })
         res.status(HTTP_CODES.OK_200).json(user).send()
     },
@@ -55,7 +57,9 @@ export const AuthController = {
         //successfully logged-in user
         res.cookie('jwt', token, {
             httpOnly : true,
-            maxAge : 3 * 24 * 60 * 60 * 1000
+            maxAge : 3 * 24 * 60 * 60 * 1000,
+            sameSite: 'none',
+            secure: true
         })
         res.status(HTTP_CODES.OK_200).json(user).send()
     },

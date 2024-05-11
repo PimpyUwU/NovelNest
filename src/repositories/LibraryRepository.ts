@@ -20,6 +20,7 @@ export const LibraryRepository = {
                         genre: true
                     }
                 },
+                author : true,
                 Feedback : {
                     select : {
                         student : {
@@ -66,6 +67,7 @@ export const LibraryRepository = {
                         genre: true
                     }
                 },
+                author : true,
                 Feedback : {
                     select : {
                         student : {

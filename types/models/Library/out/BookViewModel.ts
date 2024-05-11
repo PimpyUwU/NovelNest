@@ -6,5 +6,6 @@ export type BookViewModel = {
     photo : string
     file : string
     genre : string
+    author : string
     Feedback : FeedBackViewModel[]
 }

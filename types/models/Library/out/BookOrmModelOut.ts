@@ -8,6 +8,7 @@ export type BookOrmModelOut = {
     file_path : string,
     genre : {
         genre : string
-    }
+    },
+    author : string,
     Feedback : FeedBackViewModel[]
 }

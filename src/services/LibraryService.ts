@@ -38,6 +38,7 @@ export const LibraryService = {
             photo : EncodeFileToBase64(book.photo_path),
             file : EncodeFileToBase64(book.file_path),
             genre : book.genre.genre,
+            author : book.author,
             Feedback : book.Feedback
         }
     }
