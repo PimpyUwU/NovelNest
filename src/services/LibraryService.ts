@@ -18,6 +18,7 @@ export const LibraryService = {
 
         return books.map((book: BookOrmModelOut): BookPlateViewModel => {
             return {
+                id : book.id,
                 title: book.title,
                 description: book.description,
                 photo: EncodeFileToBase64(book.photo_path)

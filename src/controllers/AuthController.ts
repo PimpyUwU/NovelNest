@@ -4,7 +4,7 @@ import {LogInRequestModel} from "../../types/models/Auth/in/LogInRequestModel";
 import {UserViewModel} from "../../types/models/Auth/out/UserViewModel";
 import {AuthService} from "../services/AuthService";
 import HTTP_CODES from "../HTTP_CODES";
-import jwt, {JwtPayload} from "jsonwebtoken"
+import jwt from "jsonwebtoken"
 import {SECRET_KEY} from "../../env";
 import {SignUpRequestModel} from "../../types/models/Auth/in/SignUpRequestModel";
 import {UniversityViewModel} from "../../types/models/Auth/out/UniversityViewModel";
@@ -30,8 +30,6 @@ export const AuthController = {
         res.cookie('jwt', token, {
             httpOnly : true,
             maxAge : 3 * 24 * 60 * 60 * 1000,
-            sameSite: 'none',
-            secure: true
         })
         res.status(HTTP_CODES.OK_200).json(user).send()
     },
@@ -58,8 +56,6 @@ export const AuthController = {
         res.cookie('jwt', token, {
             httpOnly : true,
             maxAge : 3 * 24 * 60 * 60 * 1000,
-            sameSite: 'none',
-            secure: true
         })
         res.status(HTTP_CODES.OK_200).json(user).send()
     },

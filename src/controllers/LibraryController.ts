@@ -29,7 +29,7 @@ export const LibraryController = {
     },
 
     async GetBookById(req : RequestWithURIParam<{id : number}>,
-                      res : Response<BookPlateViewModel>){
+                      res : Response<BookViewModel>){
         const userData : UserJWTData = {
             userID: +res.locals.userId,
             universityId : +res.locals.universityId,
