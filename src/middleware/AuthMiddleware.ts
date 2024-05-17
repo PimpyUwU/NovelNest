@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from "express";
 import {SECRET_KEY} from "../../env";
 import * as jwt from "jsonwebtoken"
-import {AllTypeRequest, RequestWithJWT} from "../../types/RequestTypes";
+import {AllTypeRequest} from "../../types/RequestTypes";
 
 export const AuthMiddleware = {
     async requireAuthorization(req : Request, res : Response, next : NextFunction){
@@ -30,7 +30,6 @@ export const AuthMiddleware = {
                 isVerified : payload.isVerified
             }
         }
-
         next()
     }
 }

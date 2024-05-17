@@ -63,7 +63,7 @@ export const AuthController = {
     async logOut(req : RequestWithJWT, res : Response){
         res.cookie('jwt', '', {
             maxAge : 1,
-            httpOnly : true
+            httpOnly : true,
         }).redirect('/')
     }
 }
