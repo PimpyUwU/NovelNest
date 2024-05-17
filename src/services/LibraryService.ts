@@ -12,7 +12,7 @@ export const LibraryService = {
     async GetAllBooks(userData : UserJWTData, filters : BookFilters) : Promise<BookPlateViewModel[] | null>{
         const books : BookOrmModelOut[] | null = await LibraryRepository.getAllBooks(userData, filters)
 
-        if(!books){
+        if(!books || !userData.userID){
             return null
         }
 
@@ -29,9 +29,10 @@ export const LibraryService = {
     async GetBookByID(userData : UserJWTData, bookId : number) : Promise<BookViewModel | null>{
         const book : BookOrmModelOut | null = await LibraryRepository.GetBookById(userData, bookId)
 
-        if(!book){
+        if(!book || !userData.userID){
             return null
         }
+
 
         return {
             title : book.title,

@@ -34,6 +34,7 @@ export const LibraryRepository = {
                 }
             },
             where: {
+                is_free : (userData.isVerified ? undefined : true),
                 genre: {
                     type : {
                         type : filters.type
