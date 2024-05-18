@@ -2,6 +2,7 @@ import {NextFunction, Request, Response} from "express";
 import {SECRET_KEY} from "../../env";
 import * as jwt from "jsonwebtoken"
 import {AllTypeRequest} from "../../types/RequestTypes";
+import HTTP_CODES from "../HTTP_CODES";
 
 export const AuthMiddleware = {
     async requireAuthorization(req : Request, res : Response, next : NextFunction){
@@ -10,13 +11,13 @@ export const AuthMiddleware = {
         if(token){
             jwt.verify(token, SECRET_KEY,(error) => {
                 if(error){
-                    res.redirect("/auth/log-in")
+                    res.status(HTTP_CODES.UNAUTHORIZED_401).send()
                 }
                 else
                     next()
             })
         }
-        else res.redirect("/admin/log-in")
+        else res.status(HTTP_CODES.UNAUTHORIZED_401).send()
     },
 
     async checkUserRoleAndId(req : AllTypeRequest<any, any, any>, res : Response, next : NextFunction){
@@ -29,7 +30,8 @@ export const AuthMiddleware = {
                 universityId : payload.universityId,
                 isVerified : payload.isVerified
             }
-        }
-        next()
+
+            next()
+        } else res.status(HTTP_CODES.UNAUTHORIZED_401).send()
     }
 }
