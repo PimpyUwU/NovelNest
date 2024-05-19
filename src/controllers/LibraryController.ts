@@ -19,6 +19,12 @@ export const LibraryController = {
 
         const filters = req.query
 
+        if(filters){
+            if(filters.year){
+                filters.year = +filters.year
+            }
+        }
+
         const books : BookPlateViewModel[] | null = await LibraryService.GetAllBooks(userData, filters)
 
         if(!books){
