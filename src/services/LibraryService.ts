@@ -33,7 +33,6 @@ export const LibraryService = {
             return null
         }
 
-
         return {
             title : book.title,
             description : book.description,
